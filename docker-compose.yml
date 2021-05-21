@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  nestcrud-postgres: 
+    container_name: nestcrud-postgres
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: nestcrud-db
+      POSTGRES_USER: nestcrud-dev
+      POSTGRES_PASSWORD: NARCIO
+    volumes:
+      - postgres:/data/postgres
+    networks: 
+      - base
+ 
+      
+  nestcrud-api: 
+    container_name: nestcrud-api
+    image: node:latest
+    command: yarn start:dev
+    depends_on:
+      - nestcrud-postgres
+    working_dir: /app
+    environment: 
+      POSTGRES_HOST: nestcrud-postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: nestcrud-dev
+      POSTGRES_PASSWORD: NARCIO
+      POSTGRES_DB: nestcrud-db
+    networks:
+      - base
+    ports: 
+      - 3000:3000
+    volumes: 
+      - ./nestcrud-api/:/app
+    
+networks: 
+  base:
+volumes:
+  postgres:
