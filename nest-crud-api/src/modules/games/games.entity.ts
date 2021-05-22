@@ -1,8 +1,15 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinColumn,
+} from 'typeorm';
+import { Subcategory } from '../subcategories/subcategories.entity';
 
 @Entity()
 export class Game {
-  @PrimaryGeneratedColumn({name:'primary_id'})
+  @PrimaryGeneratedColumn({ name: 'primary_id' })
   id: number;
 
   @Column({ length: 500 })
@@ -22,4 +29,8 @@ export class Game {
 
   @Column()
   status: boolean;
+
+  // @ManyToMany((type) => Subcategory, (game) => Game)
+  // @JoinColumn()
+  // subcategory: Subcategory;
 }

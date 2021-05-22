@@ -1,0 +1,61 @@
+Games
+{
+	"name": "Detroit",
+	"description": "chore e sofra, AQUELA MORTE É CULPA SUA",
+  	"year": 2018,
+  	"publisher": "sei lá, bioware?",
+  	"developer": "sei menos ainda",
+	"status": true
+}
+{
+	"name": "Magicka",
+	"description": "use sua varinha harry",
+  	"year": 2013,
+  	"publisher": "um pessoal",
+  	"developer": "uns corno",
+	"status": true
+}
+{
+	"name": "Magicka 2",
+	"description": "use sua varinha novamente",
+  	"year": 2015,
+  	"publisher": "o mesmo pessoal",
+  	"developer": "menos corno dessa vez",
+	"status": true
+}
+{
+	"name": "Magicka 2 - remaster",
+	"description": "use sua varinha remasterizada harry",
+  	"year": 2016,
+  	"publisher": "advinha? o mesmo pessoal",
+  	"developer": "talvez menos cornos ainda",
+	"status": false
+}
+
+Subcategories
+{
+	"name": "choise-based",
+	"description": "chore e sofra muito, ELE MORREU POR SUA CAUSA"
+}
+{
+	"name": "crash-based",
+	"description": "TEM UMA MAGIA QUE SERVE PRA CRASHAR O JOGO KKKKKK"
+}
+{
+	"name": "remastered",
+	"description": "memsa coisa, nova geração, easy money hehe"
+}
+
+Categories
+{
+	"name": "acao",
+	"description": "arminha faz boom"
+}
+{
+	"name": "aventura",
+	"description": "corre, pula, corre, morre, renasce e corre"
+}
+{
+	"name": "terror",
+	"description": "da mais medo que filme"
+}

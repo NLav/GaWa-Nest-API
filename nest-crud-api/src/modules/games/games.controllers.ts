@@ -1,8 +1,7 @@
 import { Controller, Get, Param, Patch, Post, Req } from '@nestjs/common';
 import { Game } from './games.entity';
 import { GameService } from './games.service';
-import { request, Request } from 'express';
-import { patch } from 'superagent';
+import { Request } from 'express';
 
 @Controller('game')
 export class GameController {
