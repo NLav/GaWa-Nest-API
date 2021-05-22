@@ -1,23 +1,22 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
 export class Game {
-    @PrimaryGeneratedColumn('primary_id')
-    id: number;
+  @PrimaryGeneratedColumn({name:'primary_id'})
+  id: number;
 
-    @Column({length: 500})
-    name: string;
+  @Column({ length: 500 })
+  name: string;
 
-    @Column()
-    description: string;
+  @Column()
+  description: string;
 
-    @Column()
-    year: number;
+  @Column()
+  year: number;
 
-    @Column()
-    publisher: string;
-    
-    @Column()
-    developer: string;
+  @Column()
+  publisher: string;
 
+  @Column()
+  developer: string;
 }

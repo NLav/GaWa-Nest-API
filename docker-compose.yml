@@ -34,7 +34,7 @@ services:
     ports: 
       - 3000:3000
     volumes: 
-      - ./nestcrud-api/:/app
+      - ./nest-crud-api/:/app
     
 networks: 
   base:
