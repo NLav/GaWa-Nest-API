@@ -24,6 +24,7 @@ export class GameService {
       year: data.year,
       publisher: data.publisher,
       developer: data.developer,
+      status: data.status,
     });
     return this.gameRepository.save(create);
   }
@@ -36,6 +37,7 @@ export class GameService {
     game.year = data.year;
     game.publisher = data.publisher;
     game.developer = data.developer;
+    game.status = data.status;
 
     return this.gameRepository.save(game);
   }

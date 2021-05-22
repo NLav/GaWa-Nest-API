@@ -19,4 +19,7 @@ export class Game {
 
   @Column()
   developer: string;
+
+  @Column()
+  status: boolean;
 }
