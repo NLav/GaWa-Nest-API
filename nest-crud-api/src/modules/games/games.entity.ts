@@ -2,8 +2,8 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  ManyToMany,
   JoinColumn,
+  ManyToMany,
 } from 'typeorm';
 import { Subcategory } from '../subcategories/subcategories.entity';
 
@@ -30,7 +30,7 @@ export class Game {
   @Column()
   status: boolean;
 
-  // @ManyToMany((type) => Subcategory, (game) => Game)
-  // @JoinColumn()
-  // subcategory: Subcategory;
+  @ManyToMany((type) => Subcategory, (game) => Game)
+  @JoinColumn()
+  subcategory: Subcategory;
 }

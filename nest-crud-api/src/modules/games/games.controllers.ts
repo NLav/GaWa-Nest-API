@@ -22,6 +22,11 @@ export class GameController {
     return this.gameService.createGame(request.body);
   }
 
+  @Post('multiple')
+  async createMultipleGame(@Req() request: Request): Promise<Game> {
+    return this.gameService.createMultipleGame(request.body);
+  }
+
   @Patch(':id')
   async updateGame(
     @Req() request: Request,

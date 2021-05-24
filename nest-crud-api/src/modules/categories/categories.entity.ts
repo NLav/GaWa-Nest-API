@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  JoinColumn,
+} from 'typeorm';
+import { Subcategory } from '../subcategories/subcategories.entity';
 
 @Entity()
 export class Category {
@@ -10,4 +17,8 @@ export class Category {
 
   @Column()
   description: string;
+
+  @OneToMany((type) => Subcategory, (category) => Category)
+  @JoinColumn()
+  subcategory: Subcategory;
 }

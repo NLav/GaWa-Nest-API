@@ -29,6 +29,20 @@ export class GameService {
     return this.gameRepository.save(create);
   }
 
+  async createMultipleGame(data: any): Promise<Game> {
+    const create = data.map((g) =>
+      this.gameRepository.create({
+        name: g.name,
+        description: g.description,
+        year: g.year,
+        publisher: g.publisher,
+        developer: g.developer,
+        status: g.status,
+      }),
+    );
+    return this.gameRepository.save(create);
+  }
+
   async updateGame(id: number, data: any): Promise<Game> {
     const game = await this.findById(id);
     if (!game) throw new Error('Ta na disney?');
