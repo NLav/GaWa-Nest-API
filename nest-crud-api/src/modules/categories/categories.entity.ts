@@ -18,7 +18,7 @@ export class Category {
   @Column()
   description: string;
 
-  @OneToMany((type) => Subcategory, (category) => Category)
+  @OneToMany(() => Subcategory, (category) => Category)
   @JoinColumn()
   subcategory: Subcategory;
 }

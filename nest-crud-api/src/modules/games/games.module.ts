@@ -3,10 +3,11 @@ import { DatabaseModule } from '../../database/database.module';
 import { GameController } from './games.controllers';
 import { GameProviders } from './games.providers';
 import { GameService } from './games.service';
+import { SubcategoryModule } from '../subcategories/subcategories.module';
 
 @Module({
   controllers: [GameController],
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, SubcategoryModule],
   providers: [...GameProviders, GameService],
 })
 export class GameModule {}

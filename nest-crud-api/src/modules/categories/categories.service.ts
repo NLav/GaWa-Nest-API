@@ -7,7 +7,7 @@ export class CategoryService {
   constructor(
     @Inject('CATEGORY_REPOSITORY')
     private categoryRepository: Repository<Category>,
-  ){}
+  ) {}
 
   async findAll(): Promise<Category[]> {
     return this.categoryRepository.find();
@@ -17,7 +17,7 @@ export class CategoryService {
     return this.categoryRepository.findOne(id);
   }
 
-  async createCategory(data:any): Promise<Category> {
+  async createCategory(data: any): Promise<Category> {
     const create = this.categoryRepository.create({
       name: data.name,
       description: data.description,

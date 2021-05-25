@@ -1,13 +1,5 @@
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-  JoinColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Category } from '../categories/categories.entity';
-import { Game } from '../games/games.entity';
 
 @Entity()
 export class Subcategory {
@@ -20,9 +12,6 @@ export class Subcategory {
   @Column()
   description: string;
 
-  @ManyToOne((type) => Category, (subcategory) => Subcategory)
-  category: Category;
-
-  @ManyToMany((type) => Game, (subcategory) => Subcategory)
-  game: Game;
+  @ManyToOne(() => Category, (subcategory) => Subcategory, { nullable: false })
+  categoryId: Category;
 }

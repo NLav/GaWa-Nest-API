@@ -1,3 +1,4 @@
+import { CategoryService } from '../categories/categories.service';
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Subcategory } from './subcategories.entity';
@@ -7,10 +8,13 @@ export class SubcategoryService {
   constructor(
     @Inject('SUBCATEGORY_REPOSITORY')
     private subcategoryRepository: Repository<Subcategory>,
+    private categoryService: CategoryService,
   ) {}
 
   async findAll(): Promise<Subcategory[]> {
-    return this.subcategoryRepository.find();
+    return this.subcategoryRepository.find({
+      relations: ['categoryId'],
+    });
   }
 
   async findById(id: number): Promise<Subcategory> {
@@ -21,6 +25,7 @@ export class SubcategoryService {
     const create = this.subcategoryRepository.create({
       name: data.name,
       description: data.description,
+      categoryId: data.category,
     });
     return this.subcategoryRepository.save(create);
   }
