@@ -12,6 +12,6 @@ export class Subcategory {
   @Column()
   description: string;
 
-  @ManyToOne(() => Category, (subcategory) => Subcategory, { nullable: false })
-  categoryId: Category;
+  @ManyToOne(() => Category, ({ subcategory }) => subcategory)
+  category: Category;
 }

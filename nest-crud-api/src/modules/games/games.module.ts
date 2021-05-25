@@ -9,5 +9,6 @@ import { SubcategoryModule } from '../subcategories/subcategories.module';
   controllers: [GameController],
   imports: [DatabaseModule, SubcategoryModule],
   providers: [...GameProviders, GameService],
+  exports: [GameService, GameModule],
 })
 export class GameModule {}

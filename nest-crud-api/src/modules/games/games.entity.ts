@@ -32,5 +32,5 @@ export class Game {
 
   @ManyToMany(() => Subcategory)
   @JoinTable()
-  subcategory: Subcategory;
+  subcategory: Subcategory[];
 }

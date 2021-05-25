@@ -1,16 +1,21 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Game } from './games.entity';
+import { Subcategory } from '../subcategories/subcategories.entity';
+import { SubcategoryService } from '../subcategories/subcategories.service';
 
 @Injectable()
 export class GameService {
   constructor(
     @Inject('GAME_REPOSITORY')
     private gameRepository: Repository<Game>,
+    private subcategoryService: SubcategoryService,
   ) {}
 
   async findAll(): Promise<Game[]> {
-    return this.gameRepository.find();
+    return this.gameRepository.find({
+      relations: ['subcategory', 'subcategory.category'],
+    });
   }
 
   async findById(id: number): Promise<Game> {
@@ -18,6 +23,14 @@ export class GameService {
   }
 
   async createGame(data: any): Promise<Game> {
+    // const subcategory = await this.subcategoryService.findById(
+    //   data.subcategory,
+    // );
+    const AllSubcategory = await this.subcategoryService.findAll();
+    const subcategory = data.subcategory.map((id, i) => {
+      return AllSubcategory.find((n) => n.id == id);
+    });
+
     const create = this.gameRepository.create({
       name: data.name,
       description: data.description,
@@ -25,7 +38,12 @@ export class GameService {
       publisher: data.publisher,
       developer: data.developer,
       status: data.status,
+      subcategory: subcategory,
     });
+
+    console.log('*****', create);
+
+    console.log('****** DATA CATEGORY ' + data.subcategory);
     return this.gameRepository.save(create);
   }
 
@@ -52,6 +70,7 @@ export class GameService {
     game.publisher = data.publisher;
     game.developer = data.developer;
     game.status = data.status;
+    game.subcategory = data.subcategory;
 
     return this.gameRepository.save(game);
   }

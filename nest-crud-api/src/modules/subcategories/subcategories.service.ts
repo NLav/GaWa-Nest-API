@@ -13,7 +13,7 @@ export class SubcategoryService {
 
   async findAll(): Promise<Subcategory[]> {
     return this.subcategoryRepository.find({
-      relations: ['categoryId'],
+      relations: ['category'],
     });
   }
 
@@ -25,7 +25,7 @@ export class SubcategoryService {
     const create = this.subcategoryRepository.create({
       name: data.name,
       description: data.description,
-      categoryId: data.category,
+      category: data.category,
     });
     return this.subcategoryRepository.save(create);
   }
