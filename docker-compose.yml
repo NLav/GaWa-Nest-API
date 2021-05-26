@@ -1,42 +1,41 @@
-version: '3.3'
+version: "3.3"
 
 services:
-  nestcrud-postgres: 
-    container_name: nestcrud-postgres
+  gawa-postgres:
+    container_name: gawa-postgres
     image: postgres
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: nestcrud-db
-      POSTGRES_USER: nestcrud-dev
+      POSTGRES_DB: gawa-db
+      POSTGRES_USER: gawa-dev
       POSTGRES_PASSWORD: NARCIO
     volumes:
       - postgres:/data/postgres
-    networks: 
+    networks:
       - base
- 
-      
-  nestcrud-api: 
-    container_name: nestcrud-api
+
+  gawa-api:
+    container_name: gawa-api
     image: node:latest
     command: yarn start:dev
     depends_on:
-      - nestcrud-postgres
+      - gawa-postgres
     working_dir: /app
-    environment: 
-      POSTGRES_HOST: nestcrud-postgres
+    environment:
+      POSTGRES_HOST: gawa-postgres
       POSTGRES_PORT: 5432
-      POSTGRES_USER: nestcrud-dev
+      POSTGRES_USER: gawa-dev
       POSTGRES_PASSWORD: NARCIO
-      POSTGRES_DB: nestcrud-db
+      POSTGRES_DB: gawa-db
     networks:
       - base
-    ports: 
+    ports:
       - 3000:3000
-    volumes: 
-      - ./nest-crud-api/:/app
-    
-networks: 
+    volumes:
+      - ./gawa-api/:/app
+
+networks:
   base:
 volumes:
   postgres:
