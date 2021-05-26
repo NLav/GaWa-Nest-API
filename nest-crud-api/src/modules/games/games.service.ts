@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Game } from './games.entity';
-import { Subcategory } from '../subcategories/subcategories.entity';
 import { SubcategoryService } from '../subcategories/subcategories.service';
 
 @Injectable()
@@ -26,9 +25,9 @@ export class GameService {
     // const subcategory = await this.subcategoryService.findById(
     //   data.subcategory,
     // );
-    const AllSubcategory = await this.subcategoryService.findAll();
+    const allSubcategory = await this.subcategoryService.findAll();
     const subcategory = data.subcategory.map((id, i) => {
-      return AllSubcategory.find((n) => n.id == id);
+      return allSubcategory.find((n) => n.id == id);
     });
 
     const create = this.gameRepository.create({
@@ -40,37 +39,39 @@ export class GameService {
       status: data.status,
       subcategory: subcategory,
     });
-
-    console.log('*****', create);
-
-    console.log('****** DATA CATEGORY ' + data.subcategory);
     return this.gameRepository.save(create);
   }
 
-  async createMultipleGame(data: any): Promise<Game> {
-    const create = data.map((g) =>
-      this.gameRepository.create({
-        name: g.name,
-        description: g.description,
-        year: g.year,
-        publisher: g.publisher,
-        developer: g.developer,
-        status: g.status,
-      }),
-    );
-    return this.gameRepository.save(create);
-  }
+  // async createMultipleGame(data: any): Promise<Game> {
+  //   const create = data.map((g) =>
+  //     this.gameRepository.create({
+  //       name: g.name,
+  //       description: g.description,
+  //       year: g.year,
+  //       publisher: g.publisher,
+  //       developer: g.developer,
+  //       status: g.status,
+  //     }),
+  //   );
+  //   return this.gameRepository.save(create);
+  // }
 
   async updateGame(id: number, data: any): Promise<Game> {
     const game = await this.findById(id);
     if (!game) throw new Error('Ta na disney?');
+
+    const allSubcategory = await this.subcategoryService.findAll();
+    const subcategory = data.subcategory.map((id, i) => {
+      return allSubcategory.find((n) => n.id == id);
+    });
+
     game.name = data.name;
     game.description = data.description;
     game.year = data.year;
     game.publisher = data.publisher;
     game.developer = data.developer;
     game.status = data.status;
-    game.subcategory = data.subcategory;
+    game.subcategory = subcategory;
 
     return this.gameRepository.save(game);
   }

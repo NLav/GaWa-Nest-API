@@ -35,6 +35,7 @@ export class SubcategoryService {
     if (!subcategory) throw new Error('Ta na disney?');
     subcategory.name = data.name;
     subcategory.description = data.description;
+    subcategory.category = data.category;
 
     return this.subcategoryRepository.save(subcategory);
   }
