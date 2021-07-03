@@ -5,6 +5,7 @@ import {
   JoinTable,
   ManyToMany,
 } from 'typeorm';
+import { Platform } from '../platforms/platforms.entity';
 import { Subcategory } from '../subcategories/subcategories.entity';
 
 @Entity()
@@ -33,4 +34,8 @@ export class Game {
   @ManyToMany(() => Subcategory)
   @JoinTable()
   subcategory: Subcategory[];
+
+  @ManyToMany(() => Platform, ({ game }) => game)
+  @JoinTable()
+  platform: Platform[];
 }
